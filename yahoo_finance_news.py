@@ -1,3 +1,4 @@
+# import packege
 import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
@@ -7,6 +8,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 import time
 import pandas as pd
 
+# Initialize values
 url = "https://finance.yahoo.com/topic/stock-market-news"
 links = [] 
 headers = {'accept-ranges':'bytes',
@@ -16,7 +18,7 @@ headers = {'accept-ranges':'bytes',
           'content-type':'text/javascript'}
 info = []
 
-
+# Get Links function
 def get_links(url):
     driver = webdriver.Chrome(r'C:\Users\User\chromedriver')
     driver.get(url)
@@ -40,7 +42,7 @@ def get_links(url):
     return links
 
 
-
+# get info function
 def get_info(url):
     #grab the information
     response = requests.get(url, headers=headers)
@@ -58,7 +60,7 @@ def get_info(url):
     return dict(zip(column_names, columns))
 
 
-
+# main process
 links =  get_links(url)
 for link in links:
     try:
